@@ -1,4 +1,4 @@
-import { hash } from "bcrypt";
+import { compare, hash } from "bcrypt";
 
 export const hashPassword = async (password) => {
   try {
@@ -9,3 +9,13 @@ export const hashPassword = async (password) => {
     throw error;
   }
 };
+
+export const comparePassword = async(password,hashPassword)=>{
+try {
+    return await compare(password,hashPassword)
+} catch (error) {
+    console.error(error);
+    throw error
+    
+}
+}
