@@ -1,4 +1,4 @@
-import { createBlog } from "../database/repository/postRepository.js";
+import { createBlog,getAllPost,getPostById } from "../database/repository/postRepository.js";
 import cloudinary from "../utils/cloudinary.js";
 
 export const createPost = async (req, res, next) => {
@@ -32,3 +32,26 @@ export const createPost = async (req, res, next) => {
     throw error;
   }
 };
+
+export const getAllPosts = async(req,res,next)=>{
+  try {
+  const allPosts = await getAllPost()
+  res.status(200).json({success:true,message:'all blogs fetched',posts:allPosts})
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const getPost = async(req,res,next)=>{
+  try {
+    console.log('jo');
+    
+    const {id} = req.params
+    const postData =await getPostById(id)
+    res.status(200).json({success:true,post:postData})
+  } catch (error) {
+    console.error(error);
+    throw error
+    
+  }
+}

@@ -3,6 +3,8 @@ import HomePage from "../pages/HomePage";
 import AddBlog from "../pages/AddBlog";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
+import AllBlogList from "../pages/AllBlogList";
+import Blog from "../pages/Blog";
 
 function Route() {
     const route = createBrowserRouter([
@@ -21,6 +23,14 @@ function Route() {
         {
             path:'/login',
             element:<Login/>
+        },
+        {
+            path:'/allblogs',
+            element:<AllBlogList/>
+        },
+        {
+            path:'/fullarticle/:id',
+            element:<Blog/>
         }
     ])
   return <RouterProvider router={route}/>

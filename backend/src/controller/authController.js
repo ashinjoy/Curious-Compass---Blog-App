@@ -13,7 +13,7 @@ export const signup = async (req, res, next) => {
       error.statusCode = 400;
       error.message = "provide All Information";
       throw error;
-    }
+    }  
     if (password !== confirmPassword) {
       const error = new Error();
       error.statusCode = 400;

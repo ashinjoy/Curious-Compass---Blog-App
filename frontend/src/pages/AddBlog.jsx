@@ -54,6 +54,7 @@ function AddBlog() {
       });
       const { success, message } = response.data;
       if (success && message === "blog created") {
+        toast.success("blog created");
         navigate("/");
       }
     } catch (error) {
@@ -63,10 +64,10 @@ function AddBlog() {
   return (
     <>
       <Navbar />
-      <div className="mt-[5.1rem] w-full flex justify-center items-center h-[60dvh]">
+      <div className="mt-[5.1rem] w-full flex justify-center items-center ">
         <form
           action=""
-          className=" w-1/2  flex flex-col gap-3 "
+          className=" w-1/2  flex flex-col gap-3 justify-center  "
           onSubmit={handleSubmit}
         >
           <input
@@ -87,7 +88,7 @@ function AddBlog() {
             <option value={"General"}>General</option>
           </select>
           <div
-            className=" border-2 border-black"
+            className=" border-2 border-black h-[15rem] overflow-y-scroll"
             id="editor"
             ref={quillRef}
           ></div>

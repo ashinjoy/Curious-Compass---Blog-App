@@ -8,3 +8,21 @@ export const createBlog = async(data)=>{
         throw error
     }
 }
+
+export const getAllPost = async()=>{
+    try {
+        return await postModel.find({})
+    } catch (error) {
+        console.error(error);
+        throw error
+    }
+}
+
+export const getPostById = async(id)=>{
+    try {
+       return await postModel.findById({_id:id})
+    } catch (error) {
+        console.error(error);
+        throw error
+    }
+}

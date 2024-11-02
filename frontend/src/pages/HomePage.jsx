@@ -1,15 +1,17 @@
 import Navbar from "../components/navbar/Navbar";
+import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 function HomePage() {
+  
   return (
     <>
       <Navbar />
       <div className="mt-[6.4rem] w-full flex justify-end pr-[4rem] ">
         <div className="flex rounded-md border-2 border-blue-500 p-2 items-center gap-3">
-          <button className=" w-fit p-1  text-blue-500 tracking-tighter font-semibold text-base">
+          <Link className=" w-fit p-1  text-blue-500 tracking-tighter font-semibold text-base" to={'/allblogs'}>
             View All Posts
-          </button>
+          </Link>
           <FaArrowRightLong className="text-blue-500 " />
         </div>
       </div>
