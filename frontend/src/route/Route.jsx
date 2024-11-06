@@ -5,6 +5,9 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import AllBlogList from "../pages/AllBlogList";
 import Blog from "../pages/Blog";
+import MyPosts from "../pages/MyPosts";
+import EditBlog from "../pages/EditBlog";
+import ProtectedRoute from "./ProtectedRoute";
 
 function Route() {
     const route = createBrowserRouter([
@@ -14,7 +17,7 @@ function Route() {
         },
         {
             path:'/add-blog',
-            element:<AddBlog/>
+            element:<ProtectedRoute><AddBlog/></ProtectedRoute>
         },
         {
             path:'/signup',
@@ -26,11 +29,19 @@ function Route() {
         },
         {
             path:'/allblogs',
-            element:<AllBlogList/>
+            element:<ProtectedRoute><AllBlogList/></ProtectedRoute>
         },
         {
             path:'/fullarticle/:id',
-            element:<Blog/>
+            element:<ProtectedRoute><Blog/></ProtectedRoute>
+        },
+        {
+            path:'/myblogs',
+            element:<ProtectedRoute><MyPosts/></ProtectedRoute>
+        },
+        {
+            path:'/editpost/:id',
+            element:<ProtectedRoute><EditBlog/></ProtectedRoute>
         }
     ])
   return <RouterProvider router={route}/>

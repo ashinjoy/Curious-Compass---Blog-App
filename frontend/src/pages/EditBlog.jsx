@@ -4,14 +4,18 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../utils/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
 
-function AddBlog() {
+function EditBlog() {
+    const {id} = useParams()
+    const [postdata,setPostData] = useState(null)
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Technology");
+  const [category, setCategory] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const quillRef = useRef(null);
   const textEditorRef = useRef(null);
+  const {loading,error,data,apiCall} = useAxios()
   const navigate = useNavigate();
   useEffect(() => {
     if (!textEditorRef.current) {
@@ -30,12 +34,36 @@ function AddBlog() {
       textEditorRef.current = new Quill(quillRef.current, options);
     }
   }, []);
+
+  useEffect(()=>{
+    apiCall(`/post/${id}`)
+  },[])
+
+  useEffect(()=>{
+    if (data?.success) {
+        const { title, category, thumbnail, content } = data.post;
+        setTitle(title);
+        setCategory(category);
+        setThumbnail(thumbnail);
+        
+  
+       
+        if (content) {
+          const deltaContent = JSON.parse(content); 
+          textEditorRef.current.setContents(deltaContent);
+        }
+        return;
+      }
+if(error){
+    toast.error(error)
+}
+  },[data,error])
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !category || !thumbnail) {
-      toast.error("Fill All Fields");
-      return;
-    }
+    // if (!title || !category || !thumbnail) {
+    //   toast.error("Fill All Fields");
+    //   return;
+    // }
     const editorContent = textEditorRef.current;
     const { ops } = editorContent.getContents();
     console.log(ops, "ksksk");
@@ -45,9 +73,10 @@ function AddBlog() {
     formData.append("category", category);
     formData.append("thumbnail", thumbnail);
     formData.append("content", JSON.stringify(ops));
+    formData.append('postId',id)
 
     try {
-      const response = await axiosInstance.post("/createpost", formData, {
+      const response = await axiosInstance.put("/editpost", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -64,10 +93,10 @@ function AddBlog() {
   return (
     <>
       <Navbar />
-      <div className="mt-[5.1rem] w-full min-h-[90dvh] flex justify-center items-center">
+      <div className="mt-[5.1rem] w-full flex justify-center items-center ">
         <form
           action=""
-          className=" w-1/2  flex flex-col gap-3 justify-center"
+          className=" w-1/2  flex flex-col gap-3 justify-center  "
           onSubmit={handleSubmit}
         >
           <input
@@ -78,10 +107,9 @@ function AddBlog() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <select 
+          <select
             name=""
             id=""
-            value={category}
             className="border-2 border-black"
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -108,4 +136,4 @@ function AddBlog() {
   );
 }
 
-export default AddBlog;
+export default EditBlog;

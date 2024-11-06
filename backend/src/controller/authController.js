@@ -13,7 +13,7 @@ export const signup = async (req, res, next) => {
       error.statusCode = 400;
       error.message = "provide All Information";
       throw error;
-    }  
+    }
     if (password !== confirmPassword) {
       const error = new Error();
       error.statusCode = 400;
@@ -46,7 +46,7 @@ export const login = async (req, res, next) => {
       throw error;
     }
     const isValidUser = await getUserByEmail(email);
-    console.log('isUserValid',isValidUser);
+    console.log("isUserValid", isValidUser);
 
     if (!isValidUser) {
       const error = new Error();
@@ -72,7 +72,9 @@ export const login = async (req, res, next) => {
       httpOnly: true,
       sameSite: "Strict",
     });
-    res.status(200).json({ success: true, message: "login success" });
+    res
+      .status(200)
+      .json({ success: true, message: "login success", user: {...isValidUser,password:''}  });
   } catch (error) {
     console.error(error);
     next(error);

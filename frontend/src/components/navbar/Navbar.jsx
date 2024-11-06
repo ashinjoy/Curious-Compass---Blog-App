@@ -6,7 +6,7 @@ function Navbar() {
       <div className="text-white flex gap-[3rem]">
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/add-blog"}>Add Blog</NavLink>
-        <NavLink to={"/"}>Profile</NavLink>
+        <NavLink to={"/myblogs"}>Profile</NavLink>
       </div>
       <div className="text-white flex gap-[2rem]">
         <NavLink>

@@ -1,10 +1,11 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const postSchema = new Schema(
   {
     userId: {
-      type: String,
+      type: Schema.Types.ObjectId ,
       required: true,
+      ref:'user'
     },
     title: {
       type: String,
@@ -19,6 +20,10 @@ const postSchema = new Schema(
     content: {
       type: Array,
     },
+    isdelete:{
+      type:Boolean,
+      default:false
+    }
   },
   {
     timestamps: true,
