@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 
 function Login() {
@@ -71,6 +71,7 @@ function Login() {
             </div>
           </div>
         </form>
+        <Link to={'/signup'}>signup</Link>
       </div>
     </div>
   );
