@@ -25,11 +25,13 @@ function MyBlogsCard({post,myposts,setMyposts}) {
 
   },[data,error])
   return (
-    <div className="w-[70%] border border-gray-300 rounded-lg shadow-lg flex items-center p-4 bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-    <div className="w-[20%] flex justify-center items-center">
-      <img src="/blog.webp" alt="Blog Thumbnail" className="rounded-md object-cover w-full h-full max-h-[80px]" />
+    <div className="w-[70%] border border-gray-300 rounded-lg shadow-lg flex items-center p-6 bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <div className="w-[25%] flex flex-col items-center">
+      <img src={post.thumbnail} alt="Blog Thumbnail" className="rounded-md object-cover w-full h-full max-h-[120px]" />
+      <h2 className="mt-3 text-center font-semibold text-gray-800 text-lg">{post.title}</h2>
     </div>
-    <div className="w-[80%] flex items-center justify-center gap-4 ml-4">
+  
+    <div className="w-[75%] flex items-center justify-center gap-6 ml-6">
       <Link
         className="p-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 w-[4rem] text-center"
         to="/"
@@ -50,6 +52,7 @@ function MyBlogsCard({post,myposts,setMyposts}) {
       </button>
     </div>
   </div>
+  
   
   )
 }
