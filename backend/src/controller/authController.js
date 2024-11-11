@@ -70,7 +70,8 @@ export const login = async (req, res, next) => {
     });
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      sameSite: "Strict",
+      sameSite: "None",
+      secure:true
     });
     res
       .status(200)
