@@ -25,14 +25,32 @@ function MyBlogsCard({post,myposts,setMyposts}) {
 
   },[data,error])
   return (
-    <div className='w-[70%] border-2 border-black flex  items-center '>
-      <div className='w-[20%]'><img src="/blog.webp" alt="" /></div>
-      <div className='w-[80%] flex items-center justify-center gap-[2rem]'>
-        <Link className='p-2 bg-blue-500 w-[4rem]' to={'/'}>view</Link>
-        <Link className='p-2 bg-green-400' to={`/editpost/${post._id}`}>Edit</Link>
-        <button className='p-2 bg-red-400' onClick={handleDelete}>Delete</button>
-        </div>
+    <div className="w-[70%] border border-gray-300 rounded-lg shadow-lg flex items-center p-4 bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <div className="w-[20%] flex justify-center items-center">
+      <img src="/blog.webp" alt="Blog Thumbnail" className="rounded-md object-cover w-full h-full max-h-[80px]" />
     </div>
+    <div className="w-[80%] flex items-center justify-center gap-4 ml-4">
+      <Link
+        className="p-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 w-[4rem] text-center"
+        to="/"
+      >
+        View
+      </Link>
+      <Link
+        className="p-2 bg-green-500 text-white font-semibold rounded-md shadow-md hover:bg-green-600"
+        to={`/editpost/${post._id}`}
+      >
+        Edit
+      </Link>
+      <button
+        className="p-2 bg-red-500 text-white font-semibold rounded-md shadow-md hover:bg-red-600"
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  
   )
 }
 
